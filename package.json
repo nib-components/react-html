@@ -22,6 +22,7 @@
     "rev-manifest-path": "^0.1.4"
   },
   "scripts": {
-    "build": "babel ./lib/ -d ./dist"
+    "build": "babel ./lib/ -d ./dist",
+    "prepublish": "npm run babel"
   }
 }
