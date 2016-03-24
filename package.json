@@ -1,6 +1,6 @@
 {
   "name": "@nib-components/react-html",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
