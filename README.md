@@ -4,6 +4,7 @@ A common layout component for use in nib apps.
 
 **Features:**
 
+- metadata including; title
 - Includes Modernizr (for the `flexbox`/`no-flexbox` classes required by the [grid](https://github.com/nib-styles/sass-grid))
 - Includes nib fonts
 - Includes multiple style and script files (they may be revisioned)
@@ -74,8 +75,8 @@ Creates a React component for rendering generic meta-data and layout.
 
 - `static : boolean` Optional. Render the `children` with `ReactDOM.renderToStaticMarkup()` instead of `ReactDOM.renderToString()`.  Defaults to `false`.
 - `title : string` Optional. The page title. Uses `react-helmet` if unspecified.
-- `script : array` Optional. The path(s) of a script or an array of scripts. Defaults to `['index.js']`.
-- `style : array` Optional. The path(s) of a style or an array of styles. Defaults to `['index.css']`.
+- `script : string|array` Optional. The path(s) of a script or an array of scripts. Defaults to `'index.js'`.
+- `style : string|array` Optional. The path(s) of a style or an array of styles. Defaults to `'index.css'`.
 - `config : object` Optional. The application config which will be passed to the client loaded at `window.__CONFIG__`.
 - `newRelic : object` Optional. The New Relic configuration. Determines whether the New Relic script is enabled.
   - `licenseKey : string` Required. The license key.
