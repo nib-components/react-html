@@ -63,8 +63,8 @@ export default function(options) {
   const revManifestPath = options && options.revManifestPath || null;
   if (revManifestPath) {
     const assetPath = rev(revManifestPath);
-    styles.map(style => assetPath(style));
-    scripts.map(script => assetPath(script));
+    styles = styles.map(style => assetPath(style));
+    scripts = scripts.map(script => assetPath(script));
   }
 
   return function Html(props) {
