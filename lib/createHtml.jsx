@@ -50,7 +50,7 @@ export default function(options) {
 
   const config = options && options.config || null;
 
-  const title = options && options.title || head && head.title && head.title.toComponent() || 'nib';
+  const title = options && options.title || head && head.title && head.title.toComponent().toString() || 'nib';
   let scripts = options && options.script && [].concat(options.script) || ['index.js'];
   let styles = options && options.style && [].concat(options.style) || ['index.css'];
 
