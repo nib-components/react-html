@@ -46,11 +46,9 @@ _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_in
  * @returns {Html}
  */
 export default function(options) {
-  const head = Helmet.rewind();
 
   const config = options && options.config || null;
 
-  const title = options && options.title && <title>{options.title}</title> || head.title.toComponent();
   let scripts = options && options.script && [].concat(options.script) || ['index.js'];
   let styles = options && options.style && [].concat(options.style) || ['index.css'];
 
@@ -69,6 +67,9 @@ export default function(options) {
 
   return function Html(props) {
     const {state, children} = props;
+
+    const head = Helmet.rewind();
+    let title = options && options.title && <title>{options.title}</title> || head.title.toComponent();
 
     //render the children elements
     let content = '';

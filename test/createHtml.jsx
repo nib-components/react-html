@@ -1,5 +1,6 @@
 import React from 'react';
 import {expect} from 'chai';
+import Helmet from 'react-helmet';
 import render from 'react-testutils-render';
 import $ from 'react-testutils-query';
 import createHtml from '../lib/createHtml';
