@@ -96,7 +96,7 @@ export default function(options) {
           }
 
           <Modernizr/>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:300,400,700"/>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Roboto:300,400,700"/>
           {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
 
           {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo1}}></script> : null}
