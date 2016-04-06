@@ -50,7 +50,7 @@ export default function(options) {
 
   const config = options && options.config || null;
 
-  const title = options && options.title || head && head.title && head.title.toString() || 'nib';
+  const title = options && options.title && <title>{options.title}</title> || head.title.toComponent();
   let scripts = options && options.script && [].concat(options.script) || ['index.js'];
   let styles = options && options.style && [].concat(options.style) || ['index.css'];
 
@@ -87,7 +87,7 @@ export default function(options) {
           <meta charSet="utf-8"/>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
-          <title>{title}</title>
+          {title}
 
           {newRelic
             ? <NewRelic licenseKey={newRelic.licenseKey} applicationId={newRelic.applicationId}/>
