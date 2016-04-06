@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "babel ./lib/ -d ./dist",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && npm run test",
     "test": "mocha --compilers jsx:babel-register"
   }
 }
