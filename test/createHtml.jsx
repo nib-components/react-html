@@ -29,4 +29,60 @@ describe('createHtml()', () => {
 
   });
 
+  describe('<meta name="description"/>', () => {
+
+    it('should not exist when not defined', () => {
+      const Html = createHtml();
+      const html = $(render(<Html/>).element);
+
+      const desc = Array.prototype.slice.call(html.find('meta'), 0).find(
+        element => element.hasProp('name', 'description')
+      );
+
+      expect(desc).to.be.undefined;
+
+    });
+
+    it('should not be empty when defined', () => {
+      const Html = createHtml({description: 'Another great page about health insurance'});
+      const html = $(render(<Html/>).element);
+
+      const desc = Array.prototype.slice.call(html.find('meta'), 0).find(
+        element => element.hasProp('name', 'description')
+      );
+
+      expect(desc.prop('content')).to.equal('Another great page about health insurance');
+
+    });
+
+  });
+
+  describe('<link rel="canonical"/>', () => {
+
+    it('should not exist when not defined', () => {
+      const Html = createHtml();
+      const html = $(render(<Html/>).element);
+
+      const canonical = Array.prototype.slice.call(html.find('link'), 0).find(
+        element => element.hasProp('rel', 'canonical')
+      );
+
+      expect(canonical).to.be.undefined;
+
+    });
+
+    it('should not be empty when defined', () => {
+      const Html = createHtml({canonical: 'https://www.nib.com.au'});
+      const html = $(render(<Html/>).element);
+
+      const canonical = Array.prototype.slice.call(html.find('link'), 0).find(
+        element => element.hasProp('rel', 'canonical')
+      );
+
+      expect(canonical.prop('href')).to.equal('https://www.nib.com.au');
+
+    });
+
+  });
+
 });

@@ -75,6 +75,8 @@ Creates a React component for rendering generic meta-data and layout.
 
 - `static : boolean` Optional. Render the `children` with `ReactDOM.renderToStaticMarkup()` instead of `ReactDOM.renderToString()`.  Defaults to `false`.
 - `title : string` Optional. The page title. Uses `react-helmet` if unspecified.
+- `description : string` Optional. The meta description.
+- `canonical : string` Optional. The canonical URL.
 - `script : string|array` Optional. The path(s) of a script or an array of scripts. Defaults to `'index.js'`.
 - `style : string|array` Optional. The path(s) of a style or an array of styles. Defaults to `'index.css'`.
 - `config : object` Optional. The application config which will be passed to the client loaded at `window.__CONFIG__`.

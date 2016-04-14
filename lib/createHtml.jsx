@@ -32,6 +32,8 @@ _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_in
  * @param   {object}                [options]
  *
  * @param   {string}                [options.title]
+ * @param   {string}                [options.description]
+ * @param   {string}                [options.canonical]
  * @param   {string|Array<script>}  [options.script]
  * @param   {string|Array<script>}  [options.style]
  * @param   {boolean}               [options.static=false]
@@ -71,6 +73,9 @@ export default function(options) {
     const head = Helmet.rewind();
     let title = options && options.title && <title>{options.title}</title> || head.title.toComponent();
 
+    let description = options && options.description;
+    let canonical = options && options.canonical;
+
     //render the children elements
     let content = '';
     if (children) {
@@ -89,6 +94,18 @@ export default function(options) {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           {title}
+
+          {description
+            ? <meta name="description" content={description}/>
+            : null
+          }
+
+          {canonical
+            ? <link rel="canonical" href={canonical}/>
+            : null
+          }
+
+          {head.meta.toComponent()}
 
           {newRelic
             ? <NewRelic licenseKey={newRelic.licenseKey} applicationId={newRelic.applicationId}/>
