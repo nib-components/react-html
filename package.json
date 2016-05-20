@@ -1,6 +1,6 @@
 {
   "name": "@nib-components/react-html",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
@@ -8,8 +8,8 @@
     "url": "git@github.com:nib-components/react-html.git"
   },
   "peerDependencies": {
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
+    "react": "^0.14.0 || ^15.0.0",
+    "react-dom": "^0.14.0 || ^15.0.0",
     "react-helmet": "^2.3.1",
     "rev-manifest-path": "^0.1.4"
   },
