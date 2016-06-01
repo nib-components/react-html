@@ -79,6 +79,7 @@ Creates a React component for rendering generic meta-data and layout.
 - `canonical : string` Optional. The canonical URL.
 - `script : string|array` Optional. The path(s) of a script or an array of scripts. Defaults to `'index.js'`.
 - `style : string|array` Optional. The path(s) of a style or an array of styles. Defaults to `'index.css'`.
+- `revManifestPath : object` Optional. Configuration for [rev-manifest-path](https://www.npmjs.com/package/rev-manifest-path)
 - `config : object` Optional. The application config which will be passed to the client loaded at `window.__CONFIG__`.
 - `newRelic : object` Optional. The New Relic configuration. Determines whether the New Relic script is enabled.
   - `licenseKey : string` Required. The license key.
