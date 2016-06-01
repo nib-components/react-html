@@ -1,17 +1,20 @@
 {
   "name": "@nib-components/react-html",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "main": "dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
     "type": "git",
     "url": "git@github.com:nib-components/react-html.git"
   },
+  "dependencies": {
+    "@nib-components/react-sass-grid-support": "^0.1.1"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0",
-    "react-helmet": "^2.3.1",
-    "rev-manifest-path": "^0.1.4"
+    "react-helmet": "^2.3.0",
+    "rev-manifest-path": "^0.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",

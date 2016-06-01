@@ -2,6 +2,7 @@ import React from 'react';
 import {renderToString, renderToStaticMarkup} from 'react-dom/server';
 import Helmet from 'react-helmet';
 import rev from 'rev-manifest-path';
+import '@nib-components/react-sass-grid-support';
 
 import Modernizr from './Modernizr';
 import NewRelic from './NewRelic';

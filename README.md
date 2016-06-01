@@ -17,7 +17,9 @@ A common layout component for use in nib apps.
 
 ## Installation
 
-    npm install -S @nib-components/react-html react-helmet@^2.3.1 rev-manifest-path@^0.1.4 
+    npm install -S @nib-components/react-html
+
+ > Note: You also need to have `react`, `react-dom`, `react-helmet` and `rev-manifest-path` installed.
 
 ## Usage
 
@@ -90,3 +92,11 @@ Creates a React component for rendering generic meta-data and layout.
 **Returns:**
 
 A React component.
+
+## Change log
+
+# 0.3.0
+
+- add: `@nib-components/react-sass-grid-support` as required for using the custom attribute names used by `sass-grid`
+ in React
+- fix: bumped `rev-manifest-path` which would rewrite URLs to the root dir when no prefix was specified
