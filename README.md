@@ -17,7 +17,7 @@ A common layout component for use in nib apps.
 
 ## Installation
 
-    npm install -S @nib-components/react-html
+    npm install -S @nib-components/react-html react-helmet@^2.3.1 rev-manifest-path@^0.1.4 
 
 ## Usage
 
