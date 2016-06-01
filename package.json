@@ -29,7 +29,7 @@
     "react-helmet": "^2.3.1",
     "react-testutils-query": "^0.6.0",
     "react-testutils-render": "^0.1.2",
-    "rev-manifest-path": "^0.1.4"
+    "rev-manifest-path": "^0.2.0"
   },
   "scripts": {
     "build": "babel ./lib/ -d ./dist",
