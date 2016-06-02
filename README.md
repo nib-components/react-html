@@ -97,6 +97,10 @@ A React component.
 
 # 0.3.0
 
+- Add `lang="en-AU"` to `<html>`
+
+# 0.3.0
+
 - add: `@nib-components/react-sass-grid-support` as required for using the custom attribute names used by `sass-grid`
  in React
 - fix: bumped `rev-manifest-path` which would rewrite URLs to the root dir when no prefix was specified
