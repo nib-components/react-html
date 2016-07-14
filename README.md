@@ -98,10 +98,7 @@ A React component.
 # 0.4.0
 
 - add: added the nib favicon
-
-# 0.3.0
-
-- Add `lang="en-AU"` to `<html>`
+- add `lang="en-AU"` to `<html>` for SEO
 
 # 0.3.0
 
