@@ -95,9 +95,12 @@ A React component.
 
 ## Change log
 
-# 0.4.0
+# 0.5.0
 
 - add: added the nib favicon
+
+# 0.4.0
+
 - add `lang="en-AU"` to `<html>` for SEO
 
 # 0.3.0
