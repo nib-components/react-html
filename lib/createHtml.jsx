@@ -88,7 +88,7 @@ export default function(options) {
     }
 
     return (
-      <html>
+      <html lang="en-AU">
         <head>
 
           <meta charSet="utf-8"/>
