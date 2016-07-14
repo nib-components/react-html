@@ -4,20 +4,20 @@ A common layout component for use in nib apps.
 
 **Features:**
 
-- metadata including; title
-- Includes Modernizr (for the `flexbox`/`no-flexbox` classes required by the [grid](https://github.com/nib-styles/sass-grid))
-- Includes nib fonts
-- Includes multiple style and script files (they may be revisioned)
-- Serialises and passes app config to the client
-- Serialises and passes `redux` state to the client
-- New Relic monitoring
-- Google Tag Manager
-- Visual Website Optimizer
-
+- metadata e.g. title
+- favicon
+- fonts
+- configurable style and script files (may be hashed for cache busting)
+- Modernizr (adds the `flexbox`/`no-flexbox` classes required by our [grid](https://github.com/nib-styles/sass-grid))
+- New Relic (app monitoring)
+- Google Tag Manager (analytics)
+- Visual Website Optimizer (A/B testing)
+- serialize and pass app config to the client (for client/UniversalJS apps)
+- serialize and pass `redux` state to the client (for UniversalJS apps)
 
 ## Installation
 
-    npm install -S @nib-components/react-html
+    npm install --save @nib-components/react-html
 
  > Note: You also need to have `react`, `react-dom`, `react-helmet` and `rev-manifest-path` installed.
 
@@ -94,6 +94,10 @@ Creates a React component for rendering generic meta-data and layout.
 A React component.
 
 ## Change log
+
+# 0.4.0
+
+- add: added the nib favicon
 
 # 0.3.0
 
