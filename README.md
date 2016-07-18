@@ -49,7 +49,8 @@ const Html = createHtml({
     },
 
     googleTagManagerId: process.env.GTM_ID || 'GTM-XXXXXX',
-    visualWebsiteOptimizer: process.env.VWO_ENABLED || false
+    visualWebsiteOptimizer: process.env.VWO_ENABLED || false,
+    visualWebsiteOptimizerId: process.env.VWO_ID // Defaults to default VWO Account Id if not set
 
 });
 

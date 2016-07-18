@@ -8,25 +8,32 @@ import Modernizr from './Modernizr';
 import NewRelic from './NewRelic';
 import GoogleTagManager from './GoogleTagManager';
 
-const vwo1 = `
-var _vis_opt_account_id = 215379;
-var _vis_opt_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
-document.write('<s' + 'cript src="' + _vis_opt_protocol +
-'dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a='+_vis_opt_account_id+'&url='
-+encodeURIComponent(document.URL)+'&random='+Math.random()+'" type="text/javascript">' + '<\/s' + 'cript>');
-`;
-
-const vwo2 = `
-if(typeof(_vis_opt_settings_loaded) == "boolean") { document.write('<s' + 'cript src="' + _vis_opt_protocol +
-'d5phz18u4wuww.cloudfront.net/vis_opt.js" type="text/javascript">' + '<\/s' + 'cript>'); }
-// if your site already has jQuery 1.4.2, replace vis_opt.js with vis_opt_no_jquery.js above
-`;
-
-const vwo3 = `
-if(typeof(_vis_opt_settings_loaded) == "boolean" && typeof(_vis_opt_top_initialize) == "function") {
-_vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_initialize(); });
+let vwoAccountId = 215379;
+function vwo1(){
+  return `
+  var _vis_opt_account_id = ${vwoAccountId};
+  var _vis_opt_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
+  document.write('<s' + 'cript src="' + _vis_opt_protocol +
+  'dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a='+_vis_opt_account_id+'&url='
+  +encodeURIComponent(document.URL)+'&random='+Math.random()+'" type="text/javascript">' + '<\/s' + 'cript>');
+  `;
 }
-`;
+
+function vwo2(){
+   `
+  if(typeof(_vis_opt_settings_loaded) == "boolean") { document.write('<s' + 'cript src="' + _vis_opt_protocol +
+  'd5phz18u4wuww.cloudfront.net/vis_opt.js" type="text/javascript">' + '<\/s' + 'cript>'); }
+  // if your site already has jQuery 1.4.2, replace vis_opt.js with vis_opt_no_jquery.js above
+  `;
+}
+
+function vwo3(){
+   return `
+  if(typeof(_vis_opt_settings_loaded) == "boolean" && typeof(_vis_opt_top_initialize) == "function") {
+  _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_initialize(); });
+  }
+  `;
+}
 
 /**
  * Create a react component for rendering the <html>
@@ -44,6 +51,7 @@ _vis_opt_top_initialize(); vwo_$(document).ready(function() { _vis_opt_bottom_in
  * @param   {string}                [options.newRelic.applicationId]
  *
  * @param   {boolean}               [options.visualWebsiteOptimizer]
+ * @param   {number}                [options.visualWebsiteOptimizerAccountId]
  * @param   {string}                [options.googleTagManagerId]
  *
  * @returns {Html}
@@ -60,6 +68,9 @@ export default function(options) {
   const newRelic = options && options.newRelic || null;
   const googleTagManagerId = options && options.googleTagManagerId || null;
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
+  const visualWebsiteOptimizerAccountId = options && options.visualWebsiteOptimizerAccountId || null;
+  if (visualWebsiteOptimizerAccountId)
+    vwoAccountId = visualWebsiteOptimizerAccountId;
 
   const revManifestPath = options && options.revManifestPath || null;
   if (revManifestPath) {
@@ -118,9 +129,9 @@ export default function(options) {
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Roboto:300,400,700"/>
           {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
 
-          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo1}}></script> : null}
-          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo2}}></script> : null}
-          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo3}}></script> : null}
+          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo1()}}></script> : null}
+          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
+          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
 
         </head>
         <body>

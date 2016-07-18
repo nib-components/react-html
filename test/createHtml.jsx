@@ -29,6 +29,35 @@ describe('createHtml()', () => {
 
   });
 
+  describe('<head/> vwo', () => {
+    it('should use vwo default account id when undefined', () => {
+
+      const Html = createHtml({visualWebsiteOptimizer: true});
+      const html = $(render(<Html/>).element);
+
+      const defaultVwoAccountId = 215379;
+
+      const scriptElements = Array.prototype.slice.call(html.find('script'));
+      const vwoLineOne = scriptElements[0].prop('dangerouslySetInnerHTML').__html;
+
+      const vwoLinkDefaultAccount = `dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a=${defaultVwoAccountId}&url=`;
+
+      expect(vwoLineOne.indexOf(defaultVwoAccountId) > -1).to.be.true;
+    });
+
+    it('should use custom vwo account id when set', () => {
+      const accountId = 111111111;
+      const Html = createHtml({visualWebsiteOptimizer: true, visualWebsiteOptimizerAccountId: accountId});
+      const html = $(render(<Html/>).element);
+
+      const defaultVwoAccountId = 215379;
+
+      const scriptElements = Array.prototype.slice.call(html.find('script'));
+      const vwoLineOne = scriptElements[0].prop('dangerouslySetInnerHTML').__html;
+      expect(vwoLineOne.indexOf(accountId) > -1).to.be.true;
+    });
+  });
+
   describe('<meta name="description"/>', () => {
 
     it('should not exist when not defined', () => {
