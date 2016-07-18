@@ -40,7 +40,8 @@ const Html = createHtml({
     style: ['client.css'],
 
     revManifestPath: {
-      prefix: '/health-insurance/quote/public'
+      prefix: '/health-insurance/quote/public',
+      manifest: './dist/rev-manifest.json'
     },
 
     newRelic: {
@@ -49,7 +50,11 @@ const Html = createHtml({
     },
 
     googleTagManagerId: process.env.GTM_ID || 'GTM-XXXXXX',
-    visualWebsiteOptimizer: process.env.VWO_ENABLED || false
+
+    visualWebsiteOptimizer: process.env.VWO_ENABLED || false, // OR ...
+    visualWebsiteOptimizer: {
+      accountId: process.env.VWO_ACCOUNT_ID // Override of default VWO Account Id
+    }
 
 });
 
@@ -94,6 +99,10 @@ Creates a React component for rendering generic meta-data and layout.
 A React component.
 
 ## Change log
+
+# 0.6.0
+
+- add: added the ability to override the default VWO account
 
 # 0.5.0
 
