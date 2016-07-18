@@ -70,7 +70,7 @@ export default function(options) {
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
 
   let vwoAccountId = 215379;
-  if (visualWebsiteOptimizer && typeof(visualWebsiteOptimizer) === "object" && visualWebsiteOptimizer.accountId) {
+  if (typeof(visualWebsiteOptimizer) === 'object' && visualWebsiteOptimizer.accountId) {
     vwoAccountId = visualWebsiteOptimizer.accountId;
   }
 

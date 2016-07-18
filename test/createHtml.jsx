@@ -29,48 +29,55 @@ describe('createHtml()', () => {
 
   });
 
-  describe('<head/> vwo', () => {
-    it('should use vwo default account id when vwo boolean', () => {
+  describe('VWO', () => {
+
+    const defaultVwoAccountId = 215379;
+
+    it('should not have VWO when VWO is falsey', () => {
+
+      const Html = createHtml({visualWebsiteOptimizer: false});
+      const html = $(render(<Html/>).element);
+
+      expect(html.find('script').first().hasProp('dangerouslySetInnerHTML'))
+        .to.be.false
+      ;
+
+    });
+
+    it('should use the default VWO account ID when VWO is true', () => {
 
       const Html = createHtml({visualWebsiteOptimizer: true});
       const html = $(render(<Html/>).element);
 
-      const defaultVwoAccountId = 215379;
+      expect(html.find('script').first().prop('dangerouslySetInnerHTML').__html)
+        .to.contain(defaultVwoAccountId)
+      ;
 
-      const scriptElements = Array.prototype.slice.call(html.find('script'));
-      const vwoLineOne = scriptElements[0].prop('dangerouslySetInnerHTML').__html;
-
-      const vwoLinkDefaultAccount = `dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a=${defaultVwoAccountId}&url=`;
-
-      expect(vwoLineOne.indexOf(defaultVwoAccountId) > -1).to.be.true;
     });
 
-    it('should use vwo default account id when vwo object without custom id', () => {
+    it('should use the default VWO account ID when VWO is an object without custom ID', () => {
 
       const Html = createHtml({visualWebsiteOptimizer: {}});
       const html = $(render(<Html/>).element);
 
-      const defaultVwoAccountId = 215379;
+      expect(html.find('script').first().prop('dangerouslySetInnerHTML').__html)
+        .to.contain(defaultVwoAccountId)
+      ;
 
-      const scriptElements = Array.prototype.slice.call(html.find('script'));
-      const vwoLineOne = scriptElements[0].prop('dangerouslySetInnerHTML').__html;
-
-      const vwoLinkDefaultAccount = `dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a=${defaultVwoAccountId}&url=`;
-
-      expect(vwoLineOne.indexOf(defaultVwoAccountId) > -1).to.be.true;
     });
 
-    it('should use custom vwo account id when set', () => {
-      const accountId = 111111111;
-      const Html = createHtml({visualWebsiteOptimizer: {accountId}});
+    it('should use a custom VWO account ID when VWO is an object with a custom ID', () => {
+      const customAccountId = 111111111;
+
+      const Html = createHtml({visualWebsiteOptimizer: {accountId: customAccountId}});
       const html = $(render(<Html/>).element);
 
-      const defaultVwoAccountId = 215379;
+      expect(html.find('script').first().prop('dangerouslySetInnerHTML').__html)
+        .to.contain(customAccountId)
+      ;
 
-      const scriptElements = Array.prototype.slice.call(html.find('script'));
-      const vwoLineOne = scriptElements[0].prop('dangerouslySetInnerHTML').__html;
-      expect(vwoLineOne.indexOf(accountId) > -1).to.be.true;
     });
+
   });
 
   describe('<meta name="description"/>', () => {
