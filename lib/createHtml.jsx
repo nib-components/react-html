@@ -8,8 +8,7 @@ import Modernizr from './Modernizr';
 import NewRelic from './NewRelic';
 import GoogleTagManager from './GoogleTagManager';
 
-let vwoAccountId = 215379;
-function vwo1(){
+function vwo1(vwoAccountId){
   return `
   var _vis_opt_account_id = ${vwoAccountId};
   var _vis_opt_protocol = (('https:' == document.location.protocol) ? 'https://' : 'http://');
@@ -50,8 +49,9 @@ function vwo3(){
  * @param   {string}                [options.newRelic.licenseKey]
  * @param   {string}                [options.newRelic.applicationId]
  *
- * @param   {boolean}               [options.visualWebsiteOptimizer]
- * @param   {number}                [options.visualWebsiteOptimizerAccountId]
+ * @param   {boolean|object}        [options.visualWebsiteOptimizer]
+ * @param   {number}                [options.visualWebsiteOptimizer.accountId]
+ *
  * @param   {string}                [options.googleTagManagerId]
  *
  * @returns {Html}
@@ -68,9 +68,11 @@ export default function(options) {
   const newRelic = options && options.newRelic || null;
   const googleTagManagerId = options && options.googleTagManagerId || null;
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
-  const visualWebsiteOptimizerAccountId = options && options.visualWebsiteOptimizerAccountId || null;
-  if (visualWebsiteOptimizerAccountId)
-    vwoAccountId = visualWebsiteOptimizerAccountId;
+
+  let vwoAccountId = 215379;
+  if (visualWebsiteOptimizer && typeof(visualWebsiteOptimizer) === "object" && visualWebsiteOptimizer.accountId) {
+    vwoAccountId = visualWebsiteOptimizer.accountId;
+  }
 
   const revManifestPath = options && options.revManifestPath || null;
   if (revManifestPath) {
@@ -129,7 +131,7 @@ export default function(options) {
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Roboto:300,400,700"/>
           {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
 
-          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo1()}}></script> : null}
+          {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
           {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
           {visualWebsiteOptimizer ? <script type='text/javascript' dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
 

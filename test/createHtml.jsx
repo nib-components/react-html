@@ -30,7 +30,7 @@ describe('createHtml()', () => {
   });
 
   describe('<head/> vwo', () => {
-    it('should use vwo default account id when undefined', () => {
+    it('should use vwo default account id when vwo boolean', () => {
 
       const Html = createHtml({visualWebsiteOptimizer: true});
       const html = $(render(<Html/>).element);
@@ -45,9 +45,24 @@ describe('createHtml()', () => {
       expect(vwoLineOne.indexOf(defaultVwoAccountId) > -1).to.be.true;
     });
 
+    it('should use vwo default account id when vwo object without custom id', () => {
+
+      const Html = createHtml({visualWebsiteOptimizer: {}});
+      const html = $(render(<Html/>).element);
+
+      const defaultVwoAccountId = 215379;
+
+      const scriptElements = Array.prototype.slice.call(html.find('script'));
+      const vwoLineOne = scriptElements[0].prop('dangerouslySetInnerHTML').__html;
+
+      const vwoLinkDefaultAccount = `dev.visualwebsiteoptimizer.com/deploy/js_visitor_settings.php?v=1&a=${defaultVwoAccountId}&url=`;
+
+      expect(vwoLineOne.indexOf(defaultVwoAccountId) > -1).to.be.true;
+    });
+
     it('should use custom vwo account id when set', () => {
       const accountId = 111111111;
-      const Html = createHtml({visualWebsiteOptimizer: true, visualWebsiteOptimizerAccountId: accountId});
+      const Html = createHtml({visualWebsiteOptimizer: {accountId}});
       const html = $(render(<Html/>).element);
 
       const defaultVwoAccountId = 215379;
