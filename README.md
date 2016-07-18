@@ -50,7 +50,8 @@ const Html = createHtml({
 
     googleTagManagerId: process.env.GTM_ID || 'GTM-XXXXXX',
     visualWebsiteOptimizer: process.env.VWO_ENABLED || false,
-    visualWebsiteOptimizerId: process.env.VWO_ID // Defaults to default VWO Account Id if not set
+    // OR 
+    visualWebsiteOptimizer: {accountId: process.env.VWO_ACCOUNT_ID}  // Allow override of default VWO Account Id
 
 });
 
