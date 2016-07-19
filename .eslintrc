@@ -1,0 +1,6 @@
+{
+  "extends": "jameslnewell/react",
+  "rules": {
+    "no-unused-expressions": 0 //TODO: how do we disable this rule only for tests?
+  }
+}
