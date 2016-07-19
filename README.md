@@ -100,6 +100,9 @@ A React component.
 
 ## Change log
 
+# 0.6.1
+- fix: vwo second line was removed in 0.6.0, now fixed
+
 # 0.6.0
 
 - add: added the ability to override the default VWO account
