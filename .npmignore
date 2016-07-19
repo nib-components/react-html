@@ -1,4 +1,4 @@
-.idea
-npm-debug.log
-node_modules
-lib
+# ignore everything but the package.json and transpiled JS
+*
+!package.json
+!dist/*

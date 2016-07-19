@@ -1,4 +1,15 @@
-.idea
+# OS
+.DS_Store
+Thumbs.db
+
+# npm
 node_modules
-npm-debug.log
-dist
+npm-debug.log*
+
+# editors
+.idea
+.vscode
+
+# project
+dist/
+
