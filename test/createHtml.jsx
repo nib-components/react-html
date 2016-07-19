@@ -32,6 +32,8 @@ describe('createHtml()', () => {
   describe('VWO', () => {
 
     const defaultVwoAccountId = 215379;
+    const vwoLine2Part = `d5phz18u4wuww.cloudfront.net/vis_opt.js`;
+    const vwoLine3Part = `vwo_$(document).ready`;
 
     it('should not have VWO when VWO is falsey', () => {
 
@@ -45,7 +47,6 @@ describe('createHtml()', () => {
     });
 
     it('should use the default VWO account ID when VWO is true', () => {
-
       const Html = createHtml({visualWebsiteOptimizer: true});
       const html = $(render(<Html/>).element);
 
@@ -53,6 +54,13 @@ describe('createHtml()', () => {
         .to.contain(defaultVwoAccountId)
       ;
 
+      expect(html.find('script').at(1).prop('dangerouslySetInnerHTML').__html)
+        .to.contain(vwoLine2Part)
+      ;
+
+      expect(html.find('script').at(2).prop('dangerouslySetInnerHTML').__html)
+        .to.contain(vwoLine3Part)
+      ;
     });
 
     it('should use the default VWO account ID when VWO is an object without custom ID', () => {
@@ -64,6 +72,13 @@ describe('createHtml()', () => {
         .to.contain(defaultVwoAccountId)
       ;
 
+      expect(html.find('script').at(1).prop('dangerouslySetInnerHTML').__html)
+        .to.contain(vwoLine2Part)
+      ;
+
+      expect(html.find('script').at(2).prop('dangerouslySetInnerHTML').__html)
+        .to.contain(vwoLine3Part)
+      ;
     });
 
     it('should use a custom VWO account ID when VWO is an object with a custom ID', () => {
@@ -76,6 +91,13 @@ describe('createHtml()', () => {
         .to.contain(customAccountId)
       ;
 
+      expect(html.find('script').at(1).prop('dangerouslySetInnerHTML').__html)
+        .to.contain(vwoLine2Part)
+      ;
+
+      expect(html.find('script').at(2).prop('dangerouslySetInnerHTML').__html)
+        .to.contain(vwoLine3Part)
+      ;
     });
 
   });
