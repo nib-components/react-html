@@ -1,6 +1,6 @@
 {
   "name": "@nib-components/react-html",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "main": "./dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
@@ -23,6 +23,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
+    "cpx": "^1.3.2",
+    "del-cli": "^0.2.0",
     "eslint": "^2.10.2",
     "eslint-config-jameslnewell": "^1.0.0-rc.3",
     "husky": "^0.11.4",
@@ -37,11 +39,11 @@
     "source-map-support": "^0.4.0"
   },
   "scripts": {
-    "clean": "rm -rf ./dist",
+    "clean": "del-cli -f ./dist",
     "lint": "eslint ./src --ext .js,.jsx",
     "build:scripts": "babel ./src --source-maps --out-dir ./dist",
     "watch:scripts": "npm run build -- --watch",
-    "build:styles": "cp ./src/*.scss ./dist",
+    "build:styles": "cpx ./src/*.scss ./dist",
     "build": "npm run build:scripts",
     "test": "mocha --compilers js:babel-register --require ./dist/_.test.js ./dist",
     "precommit": "npm run clean && npm run lint && npm run build && npm run test",

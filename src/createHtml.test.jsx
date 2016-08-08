@@ -157,4 +157,32 @@ describe('createHtml()', () => {
 
   });
 
+  describe('<meta name="robots"/>', () => {
+
+    it('should not exist when not defined', () => {
+      const Html = createHtml();
+      const html = $(render(<Html/>).element);
+
+      const robots = Array.prototype.slice.call(html.find('meta'), 0).find(
+        element => element.hasProp('name', 'robots')
+      );
+
+      expect(robots).to.be.undefined;
+
+    });
+
+    it('should not be empty when defined', () => {
+      const Html = createHtml({robots: 'noindex,nofollow'});
+      const html = $(render(<Html/>).element);
+
+      const robots = Array.prototype.slice.call(html.find('meta'), 0).find(
+        element => element.hasProp('name', 'robots')
+      );
+
+      expect(robots.prop('content')).to.equal('noindex,nofollow');
+
+    });
+
+  });
+
 });

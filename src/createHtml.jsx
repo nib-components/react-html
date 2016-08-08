@@ -41,6 +41,7 @@ function vwo3() {
  * @param   {string}                [options.title]
  * @param   {string}                [options.description]
  * @param   {string}                [options.canonical]
+ * @param   {string}                [options.robots]
  * @param   {string|Array<script>}  [options.script]
  * @param   {string|Array<script>}  [options.style]
  * @param   {boolean}               [options.static=false]
@@ -89,6 +90,7 @@ export default function(options) {
 
     let description = options && options.description;
     let canonical = options && options.canonical;
+    let robots = options && options.robots;
 
     //render the children elements
     let content = '';
@@ -116,6 +118,11 @@ export default function(options) {
 
           {canonical
             ? <link rel="canonical" href={canonical}/>
+            : null
+          }
+
+          {robots
+            ? <meta name="robots" content={robots}/>
             : null
           }
 
