@@ -84,6 +84,7 @@ Creates a React component for rendering generic meta-data and layout.
 - `title : string` Optional. The page title. Uses `react-helmet` if unspecified.
 - `description : string` Optional. The meta description.
 - `canonical : string` Optional. The canonical URL.
+- `robots : string` Optional. The meta robots tag.
 - `script : string|array` Optional. The path(s) of a script or an array of scripts. Defaults to `'index.js'`.
 - `style : string|array` Optional. The path(s) of a style or an array of styles. Defaults to `'index.css'`.
 - `revManifestPath : object` Optional. Configuration for [rev-manifest-path](https://www.npmjs.com/package/rev-manifest-path)
@@ -99,6 +100,10 @@ Creates a React component for rendering generic meta-data and layout.
 A React component.
 
 ## Change log
+
+# 0.7.0
+
+- add: `<meta name="robots">`
 
 # 0.6.1
 - fix: vwo second line was removed in 0.6.0, now fixed
