@@ -101,6 +101,11 @@ A React component.
 
 ## Change log
 
+# 0.8.0
+
+- remove: `<meta name="robots">`
+- fix: render markup before Helmet.rewind()
+
 # 0.7.0
 
 - add: `<meta name="robots">`

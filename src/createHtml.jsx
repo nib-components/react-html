@@ -85,13 +85,6 @@ export default function(options) {
   const Html = props => {
     const {state, children} = props;
 
-    const head = Helmet.rewind();
-    let title = options && options.title && <title>{options.title}</title> || head.title.toComponent();
-
-    let description = options && options.description;
-    let canonical = options && options.canonical;
-    let robots = options && options.robots;
-
     //render the children elements
     let content = '';
     if (children) {
@@ -101,6 +94,12 @@ export default function(options) {
         content = renderToString(children);
       }
     }
+
+    const head = Helmet.rewind();
+    let title = options && options.title && <title>{options.title}</title> || head.title.toComponent();
+
+    let description = options && options.description;
+    let canonical = options && options.canonical;
 
     return (
       <html lang="en-AU">
@@ -118,11 +117,6 @@ export default function(options) {
 
           {canonical
             ? <link rel="canonical" href={canonical}/>
-            : null
-          }
-
-          {robots
-            ? <meta name="robots" content={robots}/>
             : null
           }
 

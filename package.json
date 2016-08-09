@@ -1,6 +1,6 @@
 {
   "name": "@nib-components/react-html",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "main": "./dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
@@ -8,7 +8,8 @@
     "url": "git@github.com:nib-components/react-html.git"
   },
   "dependencies": {
-    "@nib-components/react-sass-grid-support": "^0.1.1"
+    "@nib-components/react-sass-grid-support": "^0.1.1",
+    "react-testutils-query": "^0.7.0-rc.1"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
