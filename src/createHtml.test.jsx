@@ -101,6 +101,26 @@ describe('createHtml()', () => {
     });
 
   });
+  describe('Clippy-chat', () => {
+
+    it('should display clippy-chat when clippyChatTimeout is included in options', () => {
+      const clippyChatTimeout = 100;
+
+      const Html = createHtml({clippyChatTimeout});
+      const html = $(render(<Html/>).element);
+
+      expect(html.find('link').at(3).prop('href')).to.contain('/shared/content/dist/clippy-chat.css');
+      expect(html.find('span[id=js-chat-timeout]').first().prop('data-timeout')).to.equal(clippyChatTimeout);
+    });
+
+    it('should not display clippy-chat when clippyChatTimeout is not included in options', () => {
+      const Html = createHtml();
+      const html = $(render(<Html/>).element);
+
+      expect(html.find('span[id=js-chat-timeout]').length).to.equal(0);
+    });
+
+  });
 
   describe('<meta name="description"/>', () => {
 
@@ -170,7 +190,8 @@ describe('createHtml()', () => {
         </Html>
       ).element);
 
-      expect(html.find('meta[name=robots]').prop('content')).to.be.equal('noindex, nofollow');
+      const metaTag = html.find('meta[name=robots]');
+      expect(metaTag[3].prop('content')).to.be.equal('noindex, nofollow');
 
     });
 
