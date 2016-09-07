@@ -140,7 +140,7 @@ export default function(options) {
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
 
-          {clippyChatTimeout ? <link key="clippy-chat" href="/shared/content/dist/clippy-chat.css" rel="stylesheet"/> : null}
+          {clippyChatTimeout ? <link key="clippy-chat" href="/shared/content/dist/clippy-chat.css?v=1.0.0.362" rel="stylesheet"/> : null}
 
         </head>
         <body>
@@ -162,13 +162,16 @@ export default function(options) {
             ? <GoogleTagManager id={googleTagManagerId}/>
             : null
           }
-
+          <script src="/shared/content/dist/dist/bundled.js"></script>
           {clippyChatTimeout
-            ? <span id="js-chat-timeout" data-timeout={clippyChatTimeout}>
-                <script src="/shared/content/dist/clippy-chat.js" defer async></script>
-              </span>
+            ? <span id="js-chat-timeout" data-timeout={clippyChatTimeout}></span>
             : null
           }
+          {clippyChatTimeout
+            ? <script src="/shared/content/dist/clippy-chat.js?v=1.0.0.362" defer async></script>
+            : null
+          }
+
 
         </body>
       </html>
