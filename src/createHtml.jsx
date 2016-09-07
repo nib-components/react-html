@@ -162,7 +162,6 @@ export default function(options) {
             ? <GoogleTagManager id={googleTagManagerId}/>
             : null
           }
-          <script src="/shared/content/dist/dist/bundled.js"></script>
           {clippyChatTimeout
             ? <span id="js-chat-timeout" data-timeout={clippyChatTimeout}></span>
             : null
