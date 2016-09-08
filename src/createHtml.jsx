@@ -55,6 +55,8 @@ function vwo3() {
  *
  * @param   {string}                [options.googleTagManagerId]
  *
+ * @param   {number}                [options.clippyChatTimeout]
+ *
  * @returns {Html}
  */
 export default function(options) {
@@ -69,6 +71,8 @@ export default function(options) {
   const newRelic = options && options.newRelic || null;
   const googleTagManagerId = options && options.googleTagManagerId || null;
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
+
+  const clippyChatTimeout = options && options.clippyChatTimeout || null;
 
   let vwoAccountId = 215379;
   if (typeof visualWebsiteOptimizer === 'object' && visualWebsiteOptimizer.accountId) {
@@ -136,6 +140,8 @@ export default function(options) {
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
 
+          {clippyChatTimeout ? <link key="clippy-chat" href="/shared/content/dist/clippy-chat.css" rel="stylesheet"/> : null}
+
         </head>
         <body>
 
@@ -156,6 +162,15 @@ export default function(options) {
             ? <GoogleTagManager id={googleTagManagerId}/>
             : null
           }
+          {clippyChatTimeout
+            ? <span id="js-chat-timeout" data-timeout={clippyChatTimeout}></span>
+            : null
+          }
+          {clippyChatTimeout
+            ? <script src="/shared/content/dist/clippy-chat.js" defer async></script>
+            : null
+          }
+
 
         </body>
       </html>
