@@ -100,6 +100,14 @@ A React component.
 
 ## Change log
 
+# 0.9.1
+
+- fix: Stop safari from rendering numbers as tel: links
+
+# 0.9.0
+
+- add: clippy-chat
+
 # 0.8.0
 
 - remove: `<meta name="robots">`

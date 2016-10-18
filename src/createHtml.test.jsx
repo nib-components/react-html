@@ -14,7 +14,7 @@ describe('createHtml()', () => {
       const Html = createHtml();
       const html = $(render(<Html/>).element);
 
-      expect(html.find('title').hasText('')).to.be.true;
+      expect(html.find('title').first().hasText('')).to.be.true;
 
     });
 
@@ -23,7 +23,7 @@ describe('createHtml()', () => {
       const Html = createHtml({title: 'Homepage | nib'});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('title').hasText('Homepage | nib')).to.be.true;
+      expect(html.find('title').first().hasText('Homepage | nib')).to.be.true;
 
     });
 
@@ -190,8 +190,8 @@ describe('createHtml()', () => {
         </Html>
       ).element);
 
-      const metaTag = html.find('meta[name=robots]');
-      expect(metaTag[3].prop('content')).to.be.equal('noindex, nofollow');
+      const metaTag = html.find('meta[name=robots][content="noindex, nofollow"]');
+      expect(metaTag).to.have.length(1);
 
     });
 
@@ -205,7 +205,7 @@ describe('createHtml()', () => {
         </Html>
       ).element);
 
-      expect(html.find('title').hasText('Hello!')).to.be.true;
+      expect(html.find('title').first().hasText('Hello!')).to.be.true;
 
     });
 
