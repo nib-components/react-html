@@ -100,6 +100,12 @@ A React component.
 
 ## Change log
 
+# 0.10.0
+
+- breaking fix: use latest `@nib-components/react-sass-grid-support` which supports `react@15.4`
+- fix: move `rev-manifest-path` from `peerDependencies` to `dependencies`
+- fix: remove duplicate test dependency from `dependencies`
+
 # 0.9.1
 
 - fix: Stop safari from rendering numbers as tel: links

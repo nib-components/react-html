@@ -1,6 +1,6 @@
 {
   "name": "@nib-components/react-html",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "main": "./dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
@@ -8,14 +8,13 @@
     "url": "git@github.com:nib-components/react-html.git"
   },
   "dependencies": {
-    "@nib-components/react-sass-grid-support": "^0.1.1",
-    "react-testutils-query": "^0.10.0"
+    "@nib-components/react-sass-grid-support": "^0.2.0",
+    "rev-manifest-path": "^0.2.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0",
-    "react-dom": "^0.14.0 || ^15.0.0",
-    "react-helmet": "^2.3.0",
-    "rev-manifest-path": "^0.2.0"
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "react-helmet": "^2.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
@@ -30,11 +29,11 @@
     "eslint-config-jameslnewell": "^1.0.0-rc.3",
     "husky": "^0.11.4",
     "mocha": "^2.4.5",
-    "react": "^0.14.8",
-    "react-addons-test-utils": "^0.14.8",
-    "react-dom": "^0.14.7",
+    "react": "^15.4.0",
+    "react-addons-test-utils": "^15.4.0",
+    "react-dom": "^15.4.0",
     "react-helmet": "^2.3.1",
-    "react-testutils-query": "^0.10.1",
+    "react-testutils-query": "^0.10.0",
     "react-testutils-render": "^0.1.2",
     "rev-manifest-path": "^0.2.0",
     "source-map-support": "^0.4.0"
