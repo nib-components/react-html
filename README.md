@@ -100,6 +100,10 @@ A React component.
 
 ## Change log
 
+# 1.0.0
+
+- break: dropped support for New Relic (no longer the go-to service with AWS/RQP)
+
 # 0.10.0
 
 - breaking fix: use latest `@nib-components/react-sass-grid-support` which supports `react@15.4`

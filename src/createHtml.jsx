@@ -5,7 +5,6 @@ import rev from 'rev-manifest-path';
 import '@nib-components/react-sass-grid-support';
 
 import Modernizr from './Modernizr';
-import NewRelic from './NewRelic';
 import GoogleTagManager from './GoogleTagManager';
 
 function vwo1(vwoAccountId) {
@@ -46,10 +45,6 @@ function vwo3() {
  * @param   {string|Array<script>}  [options.style]
  * @param   {boolean}               [options.static=false]
  *
- * @param   {object}                [options.newRelic]
- * @param   {string}                [options.newRelic.licenseKey]
- * @param   {string}                [options.newRelic.applicationId]
- *
  * @param   {boolean|object}        [options.visualWebsiteOptimizer]
  * @param   {number}                [options.visualWebsiteOptimizer.accountId]
  *
@@ -68,7 +63,6 @@ export default function(options) {
 
   const staticMarkup = options && options.static || false;
 
-  const newRelic = options && options.newRelic || null;
   const googleTagManagerId = options && options.googleTagManagerId || null;
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
 
@@ -126,11 +120,6 @@ export default function(options) {
           }
 
           {head.meta.toComponent()}
-
-          {newRelic
-            ? <NewRelic licenseKey={newRelic.licenseKey} applicationId={newRelic.applicationId}/>
-            : null
-          }
 
           <Modernizr/>
           <link rel="shortcut icon" href="https://www.nib.com.au/favicon.ico" type="image/x-icon"/>
