@@ -44,11 +44,6 @@ const Html = createHtml({
       manifest: './dist/rev-manifest.json'
     },
 
-    newRelic: {
-      licensekey: process.env.NR_KEY,
-      applicationId: process.env.NR_ID
-    },
-
     googleTagManagerId: process.env.GTM_ID || 'GTM-XXXXXX',
 
     visualWebsiteOptimizer: process.env.VWO_ENABLED || false, // OR ...
@@ -81,16 +76,10 @@ Creates a React component for rendering generic meta-data and layout.
 **Options:**
 
 - `static : boolean` Optional. Render the `children` with `ReactDOM.renderToStaticMarkup()` instead of `ReactDOM.renderToString()`.  Defaults to `false`.
-- `title : string` Optional. The page title. Uses `react-helmet` if unspecified.
-- `description : string` Optional. The meta description.
-- `canonical : string` Optional. The canonical URL.
 - `script : string|array` Optional. The path(s) of a script or an array of scripts. Defaults to `'index.js'`.
 - `style : string|array` Optional. The path(s) of a style or an array of styles. Defaults to `'index.css'`.
 - `revManifestPath : object` Optional. Configuration for [rev-manifest-path](https://www.npmjs.com/package/rev-manifest-path)
 - `config : object` Optional. The application config which will be passed to the client loaded at `window.__CONFIG__`.
-- `newRelic : object` Optional. The New Relic configuration. Determines whether the New Relic script is enabled.
-  - `licenseKey : string` Required. The license key.
-  - `applicationId : string` Required. The application ID.
 - `visualWebsiteOptimizer : boolean` Optional. Whether the VWO script is enabled. Defaults to `false`.
 - `googleTagManagerId : string` Optional. The GTM ID. Determines whether the GTM script is enabled.
 
@@ -102,7 +91,8 @@ A React component.
 
 # 1.0.0
 
-- break: dropped support for New Relic (no longer the go-to service with AWS/RQP)
+- break: Removed support for New Relic (no longer the go-to service with AWS/RQP)
+- break: Removed `title`, `description`, `canonical` and `robots` properties. Use `react-helmet` instead.
 
 # 0.10.0
 

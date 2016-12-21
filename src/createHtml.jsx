@@ -37,10 +37,6 @@ function vwo3() {
  * Create a react component for rendering the <html>
  * @param   {object}                [options]
  *
- * @param   {string}                [options.title]
- * @param   {string}                [options.description]
- * @param   {string}                [options.canonical]
- * @param   {string}                [options.robots]
  * @param   {string|Array<script>}  [options.script]
  * @param   {string|Array<script>}  [options.style]
  * @param   {boolean}               [options.static=false]
@@ -94,10 +90,6 @@ export default function(options) {
     }
 
     const head = Helmet.rewind();
-    let title = options && options.title && <title>{options.title}</title> || head.title.toComponent();
-
-    let description = options && options.description;
-    let canonical = options && options.canonical;
 
     return (
       <html lang="en-AU">
@@ -107,18 +99,8 @@ export default function(options) {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <meta name="format-detection" content="telephone=no"/>
-          {title}
 
-          {description
-            ? <meta name="description" content={description}/>
-            : null
-          }
-
-          {canonical
-            ? <link rel="canonical" href={canonical}/>
-            : null
-          }
-
+          {head.title.toComponent()}
           {head.meta.toComponent()}
 
           <Modernizr/>

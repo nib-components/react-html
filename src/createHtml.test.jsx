@@ -7,28 +7,6 @@ import createHtml from './createHtml';
 
 describe('createHtml()', () => {
 
-  describe('<title/>', () => {
-
-    it('should be empty when undefined', () => {
-
-      const Html = createHtml();
-      const html = $(render(<Html/>).element);
-
-      expect(html.find('title').first().hasText('')).to.be.true;
-
-    });
-
-    it('should not be empty when defined', () => {
-
-      const Html = createHtml({title: 'Homepage | nib'});
-      const html = $(render(<Html/>).element);
-
-      expect(html.find('title').first().hasText('Homepage | nib')).to.be.true;
-
-    });
-
-  });
-
   describe('VWO', () => {
 
     const defaultVwoAccountId = 215379;
@@ -101,6 +79,7 @@ describe('createHtml()', () => {
     });
 
   });
+
   describe('Clippy-chat', () => {
 
     it('should display clippy-chat when clippyChatTimeout is included in options', () => {
@@ -122,65 +101,38 @@ describe('createHtml()', () => {
 
   });
 
-  describe('<meta name="description"/>', () => {
-
-    it('should not exist when not defined', () => {
-      const Html = createHtml();
-      const html = $(render(<Html/>).element);
-
-      const desc = Array.prototype.slice.call(html.find('meta'), 0).find(
-        element => element.hasProp('name', 'description')
-      );
-
-      expect(desc).to.be.undefined;
-
-    });
-
-    it('should not be empty when defined', () => {
-      const Html = createHtml({description: 'Another great page about health insurance'});
-      const html = $(render(<Html/>).element);
-
-      const desc = Array.prototype.slice.call(html.find('meta'), 0).find(
-        element => element.hasProp('name', 'description')
-      );
-
-      expect(desc.prop('content')).to.equal('Another great page about health insurance');
-
-    });
-
-  });
-
-  describe('<link rel="canonical"/>', () => {
-
-    it('should not exist when not defined', () => {
-      const Html = createHtml();
-      const html = $(render(<Html/>).element);
-
-      const canonical = Array.prototype.slice.call(html.find('link'), 0).find(
-        element => element.hasProp('rel', 'canonical')
-      );
-
-      expect(canonical).to.be.undefined;
-
-    });
-
-    it('should not be empty when defined', () => {
-      const Html = createHtml({canonical: 'https://www.nib.com.au'});
-      const html = $(render(<Html/>).element);
-
-      const canonical = Array.prototype.slice.call(html.find('link'), 0).find(
-        element => element.hasProp('rel', 'canonical')
-      );
-
-      expect(canonical.prop('href')).to.equal('https://www.nib.com.au');
-
-    });
-
-  });
-
   describe('<Helmet/>', () => {
 
-    it('should render meta tags', () => {
+    it('should render a title', () => {
+      const Html = createHtml();
+      const html = $(render(
+        <Html>
+        <Helmet
+          title="Hello!"
+        />
+        </Html>
+      ).element);
+
+      expect(html.find('title').first().hasText('Hello!')).to.be.true;
+
+    });
+
+    it('should render a description', () => {
+      const Html = createHtml();
+      const html = $(render(
+        <Html>
+        <Helmet
+          meta={[{name: 'description', content: 'Another great page about health insurance'}]}
+        />
+        </Html>
+      ).element);
+
+      const metaTag = html.find('meta[name=description][content="Another great page about health insurance"]');
+      expect(metaTag).to.have.length(1);
+
+    });
+
+    it('should render a meta tag', () => {
       const Html = createHtml();
       const html = $(render(
         <Html>
@@ -192,20 +144,6 @@ describe('createHtml()', () => {
 
       const metaTag = html.find('meta[name=robots][content="noindex, nofollow"]');
       expect(metaTag).to.have.length(1);
-
-    });
-
-    it('should render title', () => {
-      const Html = createHtml();
-      const html = $(render(
-        <Html>
-          <Helmet
-            title="Hello!"
-          />
-        </Html>
-      ).element);
-
-      expect(html.find('title').first().hasText('Hello!')).to.be.true;
 
     });
 
