@@ -1,7 +1,6 @@
 import React from 'react';
 import {renderToString, renderToStaticMarkup} from 'react-dom/server';
 import Helmet from 'react-helmet';
-import rev from 'rev-manifest-path';
 import '@nib-components/react-sass-grid-support';
 
 import Modernizr from './Modernizr';
@@ -54,8 +53,8 @@ export default function(options) {
 
   const config = options && options.config || null;
 
-  let scripts = options && options.script && [].concat(options.script) || ['index.js'];
-  let styles = options && options.style && [].concat(options.style) || ['index.css'];
+  const scripts = options && options.script && [].concat(options.script) || ['index.js'];
+  const styles = options && options.style && [].concat(options.style) || ['index.css'];
 
   const staticMarkup = options && options.static || false;
 
@@ -67,13 +66,6 @@ export default function(options) {
   let vwoAccountId = 215379;
   if (typeof visualWebsiteOptimizer === 'object' && visualWebsiteOptimizer.accountId) {
     vwoAccountId = visualWebsiteOptimizer.accountId;
-  }
-
-  const revManifestPath = options && options.revManifestPath || null;
-  if (revManifestPath) {
-    const assetPath = rev(revManifestPath);
-    styles = styles.map(style => assetPath(style));
-    scripts = scripts.map(script => assetPath(script));
   }
 
   const Html = props => {
@@ -90,9 +82,18 @@ export default function(options) {
     }
 
     const head = Helmet.rewind();
+    /*
+      TODO: how do we set the default title here?
+
+       <Helmet
+         defaultTitle="My Site"
+         titleTemplate="My Site - %s"
+       />
+
+     */
 
     return (
-      <html lang="en-AU">
+      <html lang="en-AU" {...head.htmlAttributes.toComponent()}>
         <head>
 
           <meta charSet="utf-8"/>
@@ -101,12 +102,16 @@ export default function(options) {
           <meta name="format-detection" content="telephone=no"/>
 
           {head.title.toComponent()}
+          {head.base.toComponent()}
           {head.meta.toComponent()}
 
           <Modernizr/>
           <link rel="shortcut icon" href="https://www.nib.com.au/favicon.ico" type="image/x-icon"/>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Roboto:300,400,700"/>
+          {head.link.toComponent()}
+
           {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
+          {head.style.toComponent()}
 
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
@@ -123,17 +128,21 @@ export default function(options) {
             ? <script dangerouslySetInnerHTML={{__html: `window.__CONFIG__=${JSON.stringify(config)}`}}/>
             : null
           }
+
           {state
             ? <script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__=${JSON.stringify(state)}`}}/>
             : null
           }
 
+          {head.script.toComponent()}
+          {head.noscript.toComponent()}
           {scripts.map(script => (<script key={script} src={script}></script>))}
 
           {googleTagManagerId
             ? <GoogleTagManager id={googleTagManagerId}/>
             : null
           }
+
           {clippyChatTimeout
             ? <span id="js-chat-timeout" data-timeout={clippyChatTimeout}></span>
             : null
@@ -142,7 +151,6 @@ export default function(options) {
             ? <script src="/shared/content/dist/clippy-chat.js" defer async></script>
             : null
           }
-
 
         </body>
       </html>
