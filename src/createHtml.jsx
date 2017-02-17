@@ -2,6 +2,7 @@ import React from 'react';
 import {renderToString, renderToStaticMarkup} from 'react-dom/server';
 import Helmet from 'react-helmet';
 import rev from 'rev-manifest-path';
+import serialize from 'serialize-javascript';
 import '@nib-components/react-sass-grid-support';
 
 import Modernizr from './Modernizr';
@@ -149,11 +150,11 @@ export default function(options) {
           <div id="app" dangerouslySetInnerHTML={{__html: content}}/>
 
           {config
-            ? <script dangerouslySetInnerHTML={{__html: `window.__CONFIG__=${JSON.stringify(config)}`}}/>
+            ? <script dangerouslySetInnerHTML={{__html: `window.__CONFIG__=${serialize(config, {isJSON: true})}`}}/>
             : null
           }
           {state
-            ? <script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__=${JSON.stringify(state)}`}}/>
+            ? <script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__=${serialize(state, {isJSON: true})}`}}/>
             : null
           }
 
