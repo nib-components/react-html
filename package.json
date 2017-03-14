@@ -1,6 +1,6 @@
 {
   "name": "@nib-components/react-html",
-  "version": "0.10.1",
+  "version": "1.0.0-preview.1",
   "main": "./dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
@@ -15,7 +15,8 @@
   "peerDependencies": {
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
-    "react-helmet": "^2.3.0"
+    "react-helmet": "^2.3.0",
+    "styled-components": "^2.0.0-3"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
@@ -37,7 +38,8 @@
     "react-testutils-query": "^0.10.0",
     "react-testutils-render": "^0.1.2",
     "rev-manifest-path": "^0.2.0",
-    "source-map-support": "^0.4.0"
+    "source-map-support": "^0.4.0",
+    "styled-components": "^2.0.0-3"
   },
   "scripts": {
     "clean": "del-cli -f ./dist",
