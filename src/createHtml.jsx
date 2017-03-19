@@ -151,7 +151,7 @@ export default function(options) {
           {clippyChatTimeout ? <link key="clippy-chat" href="/shared/content/dist/clippy-chat.css" rel="stylesheet"/> : null}
 
           {css
-            && <style>{css}</style>
+            && <style dangerouslySetInnerHTML={{__html: css}}/>
           }
 
         </head>
