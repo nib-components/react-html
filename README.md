@@ -14,6 +14,7 @@ A common layout component for use in nib apps.
 - Visual Website Optimizer (A/B testing)
 - serialize and pass app config to the client (for client/UniversalJS apps)
 - serialize and pass `redux` state to the client (for UniversalJS apps)
+- inline `styled-components` css for server rendering
 
 ## Installation
 
@@ -99,6 +100,10 @@ Creates a React component for rendering generic meta-data and layout.
 A React component.
 
 ## Change log
+
+# 1.0.0
+
+- add: inline styled-components css for server rendering.
 
 # 0.10.0
 

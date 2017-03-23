@@ -3,9 +3,36 @@ import {expect} from 'chai';
 import render from 'react-testutils-render';
 import $ from 'react-testutils-query';
 import Helmet from 'react-helmet';
+import styled from 'styled-components';
 import createHtml from './createHtml';
 
 describe('createHtml()', () => {
+
+  describe('styled-components', () => {
+
+    it('should not inline style when children contain no styled-components', () => {
+
+      const Html = createHtml();
+      const html = $(render(<Html><div/></Html>).element);
+
+      expect(html.find('style').length).to.equal(0);
+
+    });
+
+    it('should inline style when children contains styled-components', () => {
+
+      const StyledComponent = styled.div`
+        color: red;
+      `;
+
+      const Html = createHtml();
+      const html = $(render(<Html><div><StyledComponent/></div></Html>).element);
+
+      expect(html.find('style').length).to.equal(1);
+
+    });
+
+  });
 
   describe('<title/>', () => {
 
