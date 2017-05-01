@@ -106,7 +106,7 @@ export default function(options) {
         content = renderToString(html);
       }
 
-      cssStyleElements = sheet.getStyleElement(children);
+      cssStyleElements = sheet.getStyleElement();
     }
 
     const head = Helmet.rewind();
