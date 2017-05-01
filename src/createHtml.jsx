@@ -3,7 +3,7 @@ import {renderToString, renderToStaticMarkup} from 'react-dom/server';
 import Helmet from 'react-helmet';
 import rev from 'rev-manifest-path';
 import serialize from 'serialize-javascript';
-import {styleSheet} from 'styled-components';
+import {ServerStyleSheet} from 'styled-components';
 import '@nib-components/react-sass-grid-support';
 
 import Modernizr from './Modernizr';
@@ -93,17 +93,20 @@ export default function(options) {
 
     //render the children elements
     let content = '';
-    let css = '';
+    let cssStyleElements = [];
+
     if (children) {
 
-      // styleSheet.reset();
+      const sheet = new ServerStyleSheet();
+      const html = sheet.collectStyles(children);
 
       if (staticMarkup) {
-        content = renderToStaticMarkup(children);
+        content = renderToStaticMarkup(html);
       } else {
-        content = renderToString(children);
+        content = renderToString(html);
       }
-      css = styleSheet.getCSS();
+
+      cssStyleElements = sheet.getStyleElement(children);
     }
 
     const head = Helmet.rewind();
@@ -150,9 +153,7 @@ export default function(options) {
 
           {clippyChatTimeout ? <link key="clippy-chat" href="/shared/content/dist/clippy-chat.css" rel="stylesheet"/> : null}
 
-          {css
-            && <style dangerouslySetInnerHTML={{__html: css}}/>
-          }
+          {cssStyleElements && cssStyleElements.length > 0 && cssStyleElements}
 
         </head>
         <body>
