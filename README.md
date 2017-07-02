@@ -101,6 +101,10 @@ A React component.
 
 ## Change log
 
+# 1.1.1
+
+- fix: `clippy-chat` scripts moved to a subdomain, updating path.
+
 # 1.0.0
 
 - add: inline styled-components css for server rendering.

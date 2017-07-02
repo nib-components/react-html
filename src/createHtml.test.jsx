@@ -136,7 +136,7 @@ describe('createHtml()', () => {
       const Html = createHtml({clippyChatTimeout});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('link').at(3).prop('href')).to.contain('/shared/content/dist/clippy-chat.css');
+      expect(html.find('link').at(3).prop('href')).to.contain('https://shared.nib.com.au/content/dist/clippy-chat.css');
       expect(html.find('span[id=js-chat-timeout]').first().prop('data-timeout')).to.equal(clippyChatTimeout);
     });
 
