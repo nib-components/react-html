@@ -205,6 +205,35 @@ describe('createHtml()', () => {
 
   });
 
+
+  describe('<link rel="shortcut icon"/>', () => {
+
+    it('should default to nib favicon when not defined', () => {
+      const Html = createHtml();
+      const html = $(render(<Html/>).element);
+
+      const canonical = Array.prototype.slice.call(html.find('link'), 0).find(
+        element => element.hasProp('rel', 'shortcut icon')
+      );
+
+      expect(canonical.prop('href')).to.equal('https://www.nib.com.au/favicon.ico');
+
+    });
+
+    it('should use custom favicon when defined', () => {
+      const Html = createHtml({favicon: 'https://www.some-custom-domain.com/favicon.ico'});
+      const html = $(render(<Html/>).element);
+
+      const canonical = Array.prototype.slice.call(html.find('link'), 0).find(
+        element => element.hasProp('rel', 'shortcut icon')
+      );
+
+      expect(canonical.prop('href')).to.equal('https://www.some-custom-domain.com/favicon.ico');
+
+    });
+
+  });
+
   describe('<Helmet/>', () => {
 
     it('should render meta tags', () => {
