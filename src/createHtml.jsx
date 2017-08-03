@@ -151,7 +151,7 @@ export default function(options) {
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
 
-          {clippyChatTimeout ? <link key="clippy-chat" href="/shared/content/dist/clippy-chat.css" rel="stylesheet"/> : null}
+          {clippyChatTimeout ? <link key="clippy-chat" href="https://shared.nib.com.au/content/dist/clippy-chat.css" rel="stylesheet"/> : null}
 
           {cssStyleElements && cssStyleElements.length > 0 && cssStyleElements}
 
@@ -180,7 +180,7 @@ export default function(options) {
             : null
           }
           {clippyChatTimeout
-            ? <script src="/shared/content/dist/clippy-chat.js" defer async></script>
+            ? <script src="https://shared.nib.com.au/content/dist/clippy-chat.js" defer async></script>
             : null
           }
 
