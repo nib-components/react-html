@@ -102,6 +102,10 @@ A React component.
 
 ## Change log
 
+# 2.0.0
+
+- remove: Removed New Relic tag
+
 # 1.2.0
 
 - add: `favicon` option for use outside of nib branded solutions.
