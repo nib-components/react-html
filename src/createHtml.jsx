@@ -7,7 +7,6 @@ import {ServerStyleSheet} from 'styled-components';
 import '@nib-components/react-sass-grid-support';
 
 import Modernizr from './Modernizr';
-import NewRelic from './NewRelic';
 import GoogleTagManager from './GoogleTagManager';
 
 function vwo1(vwoAccountId) {
