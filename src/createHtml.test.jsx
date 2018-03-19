@@ -128,6 +128,7 @@ describe('createHtml()', () => {
     });
 
   });
+
   describe('Clippy-chat', () => {
 
     it('should display clippy-chat when clippyChatTimeout is included in options', () => {
@@ -136,7 +137,7 @@ describe('createHtml()', () => {
       const Html = createHtml({clippyChatTimeout});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('link').at(3).prop('href')).to.contain('https://shared.nib.com.au/content/dist/clippy-chat.css');
+      expect(html.find('link').at(2).prop('href')).to.contain('https://shared.nib.com.au/content/dist/clippy-chat.css');
       expect(html.find('span[id=js-chat-timeout]').first().prop('data-timeout')).to.equal(clippyChatTimeout);
     });
 
@@ -145,6 +146,28 @@ describe('createHtml()', () => {
       const html = $(render(<Html/>).element);
 
       expect(html.find('span[id=js-chat-timeout]').length).to.equal(0);
+    });
+
+  });
+
+  describe('googleFonts', () => {
+
+    it('should include link tag to google fonts when googleFonts is included in options', () => {
+      const fonts = 'Lato:400,400i,700|Montserrat:400,700';
+
+      const Html = createHtml({googleFonts: fonts});
+      const html = $(render(<Html/>).element);
+
+      expect(html.find('.google-fonts-link-tag').length).to.equal(1);
+      expect(html.find('.google-fonts-link-tag').first().prop('href')).to.contain('https://fonts.googleapis.com/css?family=Lato:400,400i,700|Montserrat:400,700');
+    });
+
+    it('should not include link tag to google fonts when googleFonts is not included in options', () => {
+
+      const Html = createHtml();
+      const html = $(render(<Html/>).element);
+
+      expect(html.find('.google-fonts-link-tag').length).to.equal(0);
     });
 
   });

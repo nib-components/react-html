@@ -10,6 +10,7 @@ A common layout component for use in nib apps.
 - configurable style and script files (may be hashed for cache busting)
 - Modernizr (adds the `flexbox`/`no-flexbox` classes required by our [grid](https://github.com/nib-styles/sass-grid))
 - Google Tag Manager (analytics)
+- Google Fonts
 - Visual Website Optimizer (A/B testing)
 - serialize and pass app config to the client (for client/UniversalJS apps)
 - serialize and pass `redux` state to the client (for UniversalJS apps)
@@ -45,6 +46,8 @@ const Html = createHtml({
     },
 
     googleTagManagerId: process.env.GTM_ID || 'GTM-XXXXXX',
+
+    googleFonts: 'Lato:400,400i,700|Montserrat:400,700',
 
     visualWebsiteOptimizer: process.env.VWO_ENABLED || false, // OR ...
     visualWebsiteOptimizer: {
@@ -86,12 +89,18 @@ Creates a React component for rendering generic meta-data and layout.
 - `config : object` Optional. The application config which will be passed to the client loaded at `window.__CONFIG__`.
 - `visualWebsiteOptimizer : boolean` Optional. Whether the VWO script is enabled. Defaults to `false`.
 - `googleTagManagerId : string` Optional. The GTM ID. Determines whether the GTM script is enabled.
+- `googlefonts : string` Optional. The google fonts you wish to include. To be included in this format: `'Lato:400,400i,700|Montserrat:400,700'`.
 
 **Returns:**
 
 A React component.
 
 ## Change log
+
+# 3.0.0
+
+- break: No longer include nib's google fonts by default.
+- add: New `googleFonts` prop to specify which fonts and weights to load: use this format: `Lato:400,400i,700|Montserrat:400,700`
 
 # 2.0.0
 

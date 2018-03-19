@@ -50,6 +50,7 @@ function vwo3() {
  * @param   {boolean|object}        [options.visualWebsiteOptimizer]
  * @param   {number}                [options.visualWebsiteOptimizer.accountId]
  *
+ * @param   {string}                [options.googleFonts]
  * @param   {string}                [options.googleTagManagerId]
  *
  * @param   {number}                [options.clippyChatTimeout]
@@ -66,6 +67,7 @@ export default function(options) {
   const staticMarkup = options && options.static || false;
 
   const googleTagManagerId = options && options.googleTagManagerId || null;
+  const googleFonts = options && options.googleFonts || null;
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
 
   const clippyChatTimeout = options && options.clippyChatTimeout || null;
@@ -135,7 +137,12 @@ export default function(options) {
 
           <Modernizr/>
           <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Roboto:300,400,700"/>
+          
+          {googleFonts
+            ? <link rel="stylesheet" className="google-fonts-link-tag" href={`https://fonts.googleapis.com/css?family=${googleFonts}`}/>
+            : null
+          }
+
           {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
 
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
