@@ -97,6 +97,10 @@ A React component.
 
 ## Change log
 
+# 3.0.1
+
+- fix: Do not wrap GTM scripts in a div.
+
 # 3.0.0
 
 - break: No longer include nib's google fonts by default.

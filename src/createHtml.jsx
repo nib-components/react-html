@@ -7,7 +7,6 @@ import {ServerStyleSheet} from 'styled-components';
 import '@nib-components/react-sass-grid-support';
 
 import Modernizr from './Modernizr';
-import GoogleTagManager from './GoogleTagManager';
 
 function vwo1(vwoAccountId) {
   return `
@@ -170,7 +169,20 @@ export default function(options) {
           {scripts.map(script => (<script key={script} src={script}></script>))}
 
           {googleTagManagerId
-            ? <GoogleTagManager id={googleTagManagerId}/>
+            ? (
+              <noscript>
+                <iframe
+                  src={`//www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+                  height="0" width="0" style={{display: 'none', visibility: 'hidden'}}
+                ></iframe>
+              </noscript>
+            )
+            : null
+          }
+          {googleTagManagerId
+            ? (
+              <script dangerouslySetInnerHTML={{__html: `!function(e,t,a,g,n){e[g]=e[g]||[],e[g].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var m=t.getElementsByTagName(a)[0],r=t.createElement(a),s="dataLayer"!=g?"&l="+g:"";r.async=!0,r.src="//www.googletagmanager.com/gtm.js?id="+n+s,m.parentNode.insertBefore(r,m)}(window,document,"script","dataLayer","${googleTagManagerId}")`}}></script>
+            )
             : null
           }
           {clippyChatTimeout
@@ -181,7 +193,6 @@ export default function(options) {
             ? <script src="https://shared.nib.com.au/content/dist/clippy-chat.js" defer async></script>
             : null
           }
-
 
         </body>
       </html>
