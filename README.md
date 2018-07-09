@@ -97,6 +97,10 @@ A React component.
 
 ## Change log
 
+# 3.1.0
+
+- add: New `gatsby` releated options
+
 # 3.0.0
 
 - break: No longer include nib's google fonts by default.
