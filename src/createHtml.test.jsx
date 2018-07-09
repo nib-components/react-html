@@ -67,9 +67,7 @@ describe('createHtml()', () => {
       const Html = createHtml({visualWebsiteOptimizer: false});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('script').first().hasProp('dangerouslySetInnerHTML'))
-        .to.be.false
-      ;
+      expect(html.find('#vwo1')).to.have.length(0);
 
     });
 
@@ -77,15 +75,15 @@ describe('createHtml()', () => {
       const Html = createHtml({visualWebsiteOptimizer: true});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('script').first().prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo1').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(defaultVwoAccountId)
       ;
 
-      expect(html.find('script').at(1).prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo2').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(vwoLine2Part)
       ;
 
-      expect(html.find('script').at(2).prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo3').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(vwoLine3Part)
       ;
     });
@@ -95,15 +93,15 @@ describe('createHtml()', () => {
       const Html = createHtml({visualWebsiteOptimizer: {}});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('script').first().prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo1').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(defaultVwoAccountId)
       ;
 
-      expect(html.find('script').at(1).prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo2').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(vwoLine2Part)
       ;
 
-      expect(html.find('script').at(2).prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo3').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(vwoLine3Part)
       ;
     });
@@ -114,15 +112,15 @@ describe('createHtml()', () => {
       const Html = createHtml({visualWebsiteOptimizer: {accountId: customAccountId}});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('script').first().prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo1').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(customAccountId)
       ;
 
-      expect(html.find('script').at(1).prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo2').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(vwoLine2Part)
       ;
 
-      expect(html.find('script').at(2).prop('dangerouslySetInnerHTML').__html)
+      expect(html.find('#vwo3').first().prop('dangerouslySetInnerHTML').__html)
         .to.contain(vwoLine3Part)
       ;
     });
@@ -137,7 +135,7 @@ describe('createHtml()', () => {
       const Html = createHtml({clippyChatTimeout});
       const html = $(render(<Html/>).element);
 
-      expect(html.find('link').at(2).prop('href')).to.contain('https://shared.nib.com.au/content/dist/clippy-chat.css');
+      expect(html.find('link').at(1).prop('href')).to.contain('https://shared.nib.com.au/content/dist/clippy-chat.css');
       expect(html.find('span[id=js-chat-timeout]').first().prop('data-timeout')).to.equal(clippyChatTimeout);
     });
 

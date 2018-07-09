@@ -61,8 +61,8 @@ export default function(options) {
 
   const config = options && options.config || null;
 
-  let scripts = options && options.script && [].concat(options.script) || ['index.js'];
-  let styles = options && options.style && [].concat(options.style) || ['index.css'];
+  let scripts = options && options.script && [].concat(options.script) || null;
+  let styles = options && options.style && [].concat(options.style) || null;
 
   const staticMarkup = options && options.static || false;
   
@@ -158,11 +158,11 @@ export default function(options) {
             : null
           }
 
-          {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
+          {styles && styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
 
-          {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
-          {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
-          {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
+          {visualWebsiteOptimizer ? <script type="text/javascript" id="vwo1" dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
+          {visualWebsiteOptimizer ? <script type="text/javascript" id="vwo2" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
+          {visualWebsiteOptimizer ? <script type="text/javascript" id="vwo3" dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
 
           {headComponents}
 
@@ -195,7 +195,7 @@ export default function(options) {
             : null
           }
 
-          {scripts.map(script => (<script key={script} src={script}></script>))}
+          {scripts && scripts.map(script => (<script key={script} src={script}></script>))}
 
           {googleTagManagerId
             ? <GoogleTagManager id={googleTagManagerId}/>

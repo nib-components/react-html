@@ -83,8 +83,8 @@ Creates a React component for rendering generic meta-data and layout.
 - `description : string` Optional. The meta description.
 - `canonical : string` Optional. The canonical URL.
 - `favicon : string` Optional. The favicon URL. Defaults to `https://www.nib.com.au/favicon.ico`
-- `script : string|array` Optional. The path(s) of a script or an array of scripts. Defaults to `'index.js'`.
-- `style : string|array` Optional. The path(s) of a style or an array of styles. Defaults to `'index.css'`.
+- `script : string|array` Optional. The path(s) of a script or an array of scripts. Defaults to `null`.
+- `style : string|array` Optional. The path(s) of a style or an array of styles. Defaults to `null`.
 - `revManifestPath : object` Optional. Configuration for [rev-manifest-path](https://www.npmjs.com/package/rev-manifest-path)
 - `config : object` Optional. The application config which will be passed to the client loaded at `window.__CONFIG__`.
 - `visualWebsiteOptimizer : boolean` Optional. Whether the VWO script is enabled. Defaults to `false`.
@@ -100,6 +100,7 @@ A React component.
 # 3.1.0
 
 - add: New `gatsby` releated options
+- break: remove default script and styles: `index.js` and `index.css`
 
 # 3.0.0
 
