@@ -97,7 +97,7 @@ A React component.
 
 ## Change log
 
-# 3.1.0
+# 4.0.0
 
 - add: New `gatsby` releated options
 - break: remove default script and styles: `index.js` and `index.css`
