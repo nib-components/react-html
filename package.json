@@ -1,6 +1,6 @@
 {
   "name": "@nib-components/react-html",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "main": "./dist/createHtml",
   "description": "A common layout for nib applications.",
   "repository": {
@@ -30,7 +30,7 @@
     "eslint": "^2.10.2",
     "eslint-config-jameslnewell": "^1.0.0-rc.3",
     "husky": "^0.11.4",
-    "mocha": "^2.4.5",
+    "mocha": "^5.2.0",
     "react": "^15.4.0",
     "react-addons-test-utils": "^15.4.0",
     "react-dom": "^15.4.0",

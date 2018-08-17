@@ -61,28 +61,43 @@ export default function(options) {
 
   const config = options && options.config || null;
 
-  let scripts = options && options.script && [].concat(options.script) || ['index.js'];
-  let styles = options && options.style && [].concat(options.style) || ['index.css'];
+  let scripts = options && options.script && [].concat(options.script) || null;
+  let styles = options && options.style && [].concat(options.style) || null;
 
   const staticMarkup = options && options.static || false;
-
+  
   const googleTagManagerId = options && options.googleTagManagerId || null;
   const googleFonts = options && options.googleFonts || null;
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
-
+  
   const clippyChatTimeout = options && options.clippyChatTimeout || null;
-
+  
   let vwoAccountId = 215379;
   if (typeof visualWebsiteOptimizer === 'object' && visualWebsiteOptimizer.accountId) {
     vwoAccountId = visualWebsiteOptimizer.accountId;
   }
-
+  
   const revManifestPath = options && options.revManifestPath || null;
   if (revManifestPath) {
     const assetPath = rev(revManifestPath);
     styles = styles.map(style => assetPath(style));
     scripts = scripts.map(script => assetPath(script));
   }
+
+  // ================================================================================ //
+  // Gatsby sites require a few props to be added throught the dom.
+  // ================================================================================ //
+  
+  const gatsby = options && options.gatsby || false;
+  
+  const htmlAttributes = options && options.htmlAttributes || null;
+  const headComponents = options && options.headComponents || null;
+  const bodyAttributes = options && options.bodyAttributes || null;
+  const preBodyComponents = options && options.preBodyComponents || null;
+  const postBodyComponents = options && options.postBodyComponents || null;
+  const body = options && options.body || null;
+  
+  // ================================================================================ //
 
   const Html = props => {
     const {state, children} = props;
@@ -114,7 +129,7 @@ export default function(options) {
     let favicon = options && options.favicon || 'https://www.nib.com.au/favicon.ico';
 
     return (
-      <html lang="en-AU">
+      <html lang="en-AU" {...htmlAttributes}>
         <head>
 
           <meta charSet="utf-8"/>
@@ -143,20 +158,33 @@ export default function(options) {
             : null
           }
 
-          {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
+          {styles && styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
 
-          {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
-          {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
-          {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
+          {visualWebsiteOptimizer ? <script type="text/javascript" id="vwo1" dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
+          {visualWebsiteOptimizer ? <script type="text/javascript" id="vwo2" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
+          {visualWebsiteOptimizer ? <script type="text/javascript" id="vwo3" dangerouslySetInnerHTML={{__html: vwo3()}}></script> : null}
+
+          {headComponents}
 
           {clippyChatTimeout ? <link key="clippy-chat" href="https://shared.nib.com.au/content/dist/clippy-chat.css" rel="stylesheet"/> : null}
 
           {cssStyleElements && cssStyleElements.length > 0 && cssStyleElements}
-
+          
         </head>
-        <body>
+        <body {...bodyAttributes}>
+          {preBodyComponents}
 
-          <div id="app" dangerouslySetInnerHTML={{__html: content}}/>
+          {gatsby
+            ? (
+              <div
+                key={'body'}
+                id="___gatsby"
+                dangerouslySetInnerHTML={{__html: body}}
+              />
+            )
+            : <div id="app" dangerouslySetInnerHTML={{__html: content}}/>
+          }
+         
 
           {config
             ? <script dangerouslySetInnerHTML={{__html: `window.__CONFIG__=${serialize(config, {isJSON: true})}`}}/>
@@ -167,7 +195,7 @@ export default function(options) {
             : null
           }
 
-          {scripts.map(script => (<script key={script} src={script}></script>))}
+          {scripts && scripts.map(script => (<script key={script} src={script}></script>))}
 
           {googleTagManagerId
             ? <GoogleTagManager id={googleTagManagerId}/>
@@ -182,7 +210,7 @@ export default function(options) {
             : null
           }
 
-
+          {postBodyComponents}
         </body>
       </html>
     );
