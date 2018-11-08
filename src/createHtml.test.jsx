@@ -291,9 +291,9 @@ describe('createHtml()', () => {
 
   describe('Optimizely', () => {
 
-    const defaultVwoAccountId = '12036974242';
+    const defaultOptimizelyAccountId = '12036974242';
     const optimizelyUrl = 'https://cdn.optimizely.com';
-    const defaultSnippetUrl = `${optimizelyUrl}/js/${defaultVwoAccountId}.js`;
+    const defaultSnippetUrl = `${optimizelyUrl}/js/${defaultOptimizelyAccountId}.js`;
 
     it('should not have Optimizely when Optimizely is falsey', () => {
       const Html = createHtml({optimizely: false});
