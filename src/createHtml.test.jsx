@@ -228,7 +228,6 @@ describe('createHtml()', () => {
 
   });
 
-
   describe('<link rel="shortcut icon"/>', () => {
 
     it('should default to nib favicon when not defined', () => {
@@ -286,6 +285,62 @@ describe('createHtml()', () => {
 
       expect(html.find('title').first().hasText('Hello!')).to.be.true;
 
+    });
+
+  });
+
+  describe('Optimizely', () => {
+
+    const defaultOptimizelyAccountId = '12036974242';
+    const optimizelyUrl = 'https://cdn.optimizely.com';
+    const defaultSnippetUrl = `${optimizelyUrl}/js/${defaultOptimizelyAccountId}.js`;
+
+    it('should not have Optimizely when Optimizely is falsey', () => {
+      const Html = createHtml({optimizely: false});
+      const html = $(render(<Html/>).element);
+
+      const script = html.find('script')
+        .map(element => element.props().src)
+        .find(a => a.startsWith(optimizelyUrl));
+
+      expect(script).to.be.undefined;
+    });
+
+    it('should use the default Optimizely account ID when Optimizely is true', () => {
+      const Html = createHtml({optimizely: true});
+      const html = $(render(<Html/>).element);
+
+      const script = html.find('script')
+        .map(element => element.props().src)
+        .find(a => a === defaultSnippetUrl);
+
+      expect(script).to.equal(defaultSnippetUrl);
+    });
+
+    it('should use the default Optimizely account ID when Optimizely is an object without custom ID', () => {
+
+      const Html = createHtml({optimizely: {}});
+      const html = $(render(<Html/>).element);
+
+      const script = html.find('script')
+        .map(element => element.props().src)
+        .find(a => a === defaultSnippetUrl);
+
+      expect(script).to.equal(defaultSnippetUrl);
+    });
+
+    it('should use a custom Optimizely account ID when Optimizely is an object with a custom ID', () => {
+      const customAccountId = '111111111';
+      const url = `${optimizelyUrl}/js/${customAccountId}.js`;
+
+      const Html = createHtml({optimizely: {accountId: customAccountId}});
+      const html = $(render(<Html/>).element);
+
+      const script = html.find('script')
+        .map(element => element.props().src)
+        .find(a => a === url);
+
+      expect(script).to.equal(url);
     });
 
   });
