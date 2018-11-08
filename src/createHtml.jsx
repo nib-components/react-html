@@ -50,8 +50,8 @@ function vwo3() {
  * @param   {boolean|object}        [options.visualWebsiteOptimizer]
  * @param   {number}                [options.visualWebsiteOptimizer.accountId]
  *
- * @param   {number}                [options.visualWebsiteOptimizer.accountId]
- * @param   {boolean|object}        [options.optimizely.accountId]
+ * @param   {boolean|object}        [options.optimizely]
+ * @param   {string}                [options.optimizely.accountId]
  *
  * @param   {string}                [options.googleFonts]
  * @param   {string}                [options.googleTagManagerId]
