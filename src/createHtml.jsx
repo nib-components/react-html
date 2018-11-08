@@ -50,6 +50,9 @@ function vwo3() {
  * @param   {boolean|object}        [options.visualWebsiteOptimizer]
  * @param   {number}                [options.visualWebsiteOptimizer.accountId]
  *
+ * @param   {number}                [options.visualWebsiteOptimizer.accountId]
+ * @param   {boolean|object}        [options.optimizely.accountId]
+ *
  * @param   {string}                [options.googleFonts]
  * @param   {string}                [options.googleTagManagerId]
  *
@@ -71,6 +74,10 @@ export default function(options) {
   const visualWebsiteOptimizer = options && options.visualWebsiteOptimizer || false;
 
   const clippyChatTimeout = options && options.clippyChatTimeout || null;
+
+  const defaultOptimizelyId = '12036974242';
+  const optimizely = options && options.optimizely;
+  const optimizelyId = optimizely ? (optimizely.accountId || defaultOptimizelyId) : null;
 
   let vwoAccountId = 215379;
   if (typeof visualWebsiteOptimizer === 'object' && visualWebsiteOptimizer.accountId) {
@@ -137,13 +144,15 @@ export default function(options) {
 
           <Modernizr/>
           <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
-          
+
           {googleFonts
             ? <link rel="stylesheet" className="google-fonts-link-tag" href={`https://fonts.googleapis.com/css?family=${googleFonts}`}/>
             : null
           }
 
           {styles.map(style => (<link key={style} rel="stylesheet" href={style}/>))}
+
+          {optimizelyId ? <script type="text/javascript" src={`https://cdn.optimizely.com/js/${optimizelyId}.js`}></script> : null}
 
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo1(vwoAccountId)}}></script> : null}
           {visualWebsiteOptimizer ? <script type="text/javascript" dangerouslySetInnerHTML={{__html: vwo2()}}></script> : null}
